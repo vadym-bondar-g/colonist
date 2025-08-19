@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/colonist.dir/main.cpp.o -o colonist  /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libGLEW.so /usr/lib/x86_64-linux-gnu/libglfw.so.3.3 
+/usr/bin/c++ CMakeFiles/colonist.dir/Game/Main.cpp.o CMakeFiles/colonist.dir/Core/Application.cpp.o CMakeFiles/colonist.dir/Graphics/Window.cpp.o -o colonist  /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libGLEW.so /usr/lib/x86_64-linux-gnu/libglfw.so.3.3 

@@ -11,5 +11,14 @@ find_package(glfw3 QUIET)
 if (NOT glfw3_FOUND)
     find_package(GLFW3 REQUIRED)
 endif()
-add_executable(colonist main.cpp)
+
+include_directories(
+    ${OPENGL_INCLUDE_DIR}
+    ${GLEW_INCLIDE_DIR}
+    ${GLM_INCLUDE_DIR}
+)
+file(GLOB_RECURSE SOURCES source/*.cpp)
+add_executable(colonist Game/Main.cpp
+                        Core/Application.cpp
+                        Graphics/Window.cpp)
 target_link_libraries(colonist PRIVATE OpenGL::GL GLEW::GLEW glfw glm::glm)

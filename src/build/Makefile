@@ -129,29 +129,77 @@ colonist/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/build
 .PHONY : colonist/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+Core/Application.o: Core/Application.cpp.o
+.PHONY : Core/Application.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/main.cpp.o
-.PHONY : main.cpp.o
+Core/Application.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/Core/Application.cpp.o
+.PHONY : Core/Application.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+Core/Application.i: Core/Application.cpp.i
+.PHONY : Core/Application.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/main.cpp.i
-.PHONY : main.cpp.i
+Core/Application.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/Core/Application.cpp.i
+.PHONY : Core/Application.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+Core/Application.s: Core/Application.cpp.s
+.PHONY : Core/Application.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/main.cpp.s
-.PHONY : main.cpp.s
+Core/Application.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/Core/Application.cpp.s
+.PHONY : Core/Application.cpp.s
+
+Game/Main.o: Game/Main.cpp.o
+.PHONY : Game/Main.o
+
+# target to build an object file
+Game/Main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/Game/Main.cpp.o
+.PHONY : Game/Main.cpp.o
+
+Game/Main.i: Game/Main.cpp.i
+.PHONY : Game/Main.i
+
+# target to preprocess a source file
+Game/Main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/Game/Main.cpp.i
+.PHONY : Game/Main.cpp.i
+
+Game/Main.s: Game/Main.cpp.s
+.PHONY : Game/Main.s
+
+# target to generate assembly for a file
+Game/Main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/Game/Main.cpp.s
+.PHONY : Game/Main.cpp.s
+
+Graphics/Window.o: Graphics/Window.cpp.o
+.PHONY : Graphics/Window.o
+
+# target to build an object file
+Graphics/Window.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/Graphics/Window.cpp.o
+.PHONY : Graphics/Window.cpp.o
+
+Graphics/Window.i: Graphics/Window.cpp.i
+.PHONY : Graphics/Window.i
+
+# target to preprocess a source file
+Graphics/Window.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/Graphics/Window.cpp.i
+.PHONY : Graphics/Window.cpp.i
+
+Graphics/Window.s: Graphics/Window.cpp.s
+.PHONY : Graphics/Window.s
+
+# target to generate assembly for a file
+Graphics/Window.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/Graphics/Window.cpp.s
+.PHONY : Graphics/Window.cpp.s
 
 # Help Target
 help:
@@ -162,9 +210,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... colonist"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... Core/Application.o"
+	@echo "... Core/Application.i"
+	@echo "... Core/Application.s"
+	@echo "... Game/Main.o"
+	@echo "... Game/Main.i"
+	@echo "... Game/Main.s"
+	@echo "... Graphics/Window.o"
+	@echo "... Graphics/Window.i"
+	@echo "... Graphics/Window.s"
 .PHONY : help
 
 

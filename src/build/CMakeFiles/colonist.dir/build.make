@@ -69,34 +69,66 @@ include CMakeFiles/colonist.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/colonist.dir/flags.make
 
-CMakeFiles/colonist.dir/main.cpp.o: CMakeFiles/colonist.dir/flags.make
-CMakeFiles/colonist.dir/main.cpp.o: /home/user/colonist/src/main.cpp
-CMakeFiles/colonist.dir/main.cpp.o: CMakeFiles/colonist.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/colonist/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/colonist.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/colonist.dir/main.cpp.o -MF CMakeFiles/colonist.dir/main.cpp.o.d -o CMakeFiles/colonist.dir/main.cpp.o -c /home/user/colonist/src/main.cpp
+CMakeFiles/colonist.dir/Game/Main.cpp.o: CMakeFiles/colonist.dir/flags.make
+CMakeFiles/colonist.dir/Game/Main.cpp.o: /home/user/colonist/src/Game/Main.cpp
+CMakeFiles/colonist.dir/Game/Main.cpp.o: CMakeFiles/colonist.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/colonist/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/colonist.dir/Game/Main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/colonist.dir/Game/Main.cpp.o -MF CMakeFiles/colonist.dir/Game/Main.cpp.o.d -o CMakeFiles/colonist.dir/Game/Main.cpp.o -c /home/user/colonist/src/Game/Main.cpp
 
-CMakeFiles/colonist.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/colonist.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/colonist/src/main.cpp > CMakeFiles/colonist.dir/main.cpp.i
+CMakeFiles/colonist.dir/Game/Main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/colonist.dir/Game/Main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/colonist/src/Game/Main.cpp > CMakeFiles/colonist.dir/Game/Main.cpp.i
 
-CMakeFiles/colonist.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/colonist.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/colonist/src/main.cpp -o CMakeFiles/colonist.dir/main.cpp.s
+CMakeFiles/colonist.dir/Game/Main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/colonist.dir/Game/Main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/colonist/src/Game/Main.cpp -o CMakeFiles/colonist.dir/Game/Main.cpp.s
+
+CMakeFiles/colonist.dir/Core/Application.cpp.o: CMakeFiles/colonist.dir/flags.make
+CMakeFiles/colonist.dir/Core/Application.cpp.o: /home/user/colonist/src/Core/Application.cpp
+CMakeFiles/colonist.dir/Core/Application.cpp.o: CMakeFiles/colonist.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/colonist/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/colonist.dir/Core/Application.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/colonist.dir/Core/Application.cpp.o -MF CMakeFiles/colonist.dir/Core/Application.cpp.o.d -o CMakeFiles/colonist.dir/Core/Application.cpp.o -c /home/user/colonist/src/Core/Application.cpp
+
+CMakeFiles/colonist.dir/Core/Application.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/colonist.dir/Core/Application.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/colonist/src/Core/Application.cpp > CMakeFiles/colonist.dir/Core/Application.cpp.i
+
+CMakeFiles/colonist.dir/Core/Application.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/colonist.dir/Core/Application.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/colonist/src/Core/Application.cpp -o CMakeFiles/colonist.dir/Core/Application.cpp.s
+
+CMakeFiles/colonist.dir/Graphics/Window.cpp.o: CMakeFiles/colonist.dir/flags.make
+CMakeFiles/colonist.dir/Graphics/Window.cpp.o: /home/user/colonist/src/Graphics/Window.cpp
+CMakeFiles/colonist.dir/Graphics/Window.cpp.o: CMakeFiles/colonist.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/colonist/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/colonist.dir/Graphics/Window.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/colonist.dir/Graphics/Window.cpp.o -MF CMakeFiles/colonist.dir/Graphics/Window.cpp.o.d -o CMakeFiles/colonist.dir/Graphics/Window.cpp.o -c /home/user/colonist/src/Graphics/Window.cpp
+
+CMakeFiles/colonist.dir/Graphics/Window.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/colonist.dir/Graphics/Window.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/colonist/src/Graphics/Window.cpp > CMakeFiles/colonist.dir/Graphics/Window.cpp.i
+
+CMakeFiles/colonist.dir/Graphics/Window.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/colonist.dir/Graphics/Window.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/colonist/src/Graphics/Window.cpp -o CMakeFiles/colonist.dir/Graphics/Window.cpp.s
 
 # Object files for target colonist
 colonist_OBJECTS = \
-"CMakeFiles/colonist.dir/main.cpp.o"
+"CMakeFiles/colonist.dir/Game/Main.cpp.o" \
+"CMakeFiles/colonist.dir/Core/Application.cpp.o" \
+"CMakeFiles/colonist.dir/Graphics/Window.cpp.o"
 
 # External object files for target colonist
 colonist_EXTERNAL_OBJECTS =
 
-colonist: CMakeFiles/colonist.dir/main.cpp.o
+colonist: CMakeFiles/colonist.dir/Game/Main.cpp.o
+colonist: CMakeFiles/colonist.dir/Core/Application.cpp.o
+colonist: CMakeFiles/colonist.dir/Graphics/Window.cpp.o
 colonist: CMakeFiles/colonist.dir/build.make
 colonist: /usr/lib/x86_64-linux-gnu/libGL.so
 colonist: /usr/lib/x86_64-linux-gnu/libGLEW.so
 colonist: /usr/lib/x86_64-linux-gnu/libglfw.so.3.3
 colonist: CMakeFiles/colonist.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/user/colonist/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable colonist"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/user/colonist/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable colonist"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/colonist.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
