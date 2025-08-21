@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/colonist.dir/Game/Main.cpp.o.d"
   "CMakeFiles/colonist.dir/Graphics/Window.cpp.o"
   "CMakeFiles/colonist.dir/Graphics/Window.cpp.o.d"
+  "CMakeFiles/colonist.dir/Input/Input.cpp.o"
+  "CMakeFiles/colonist.dir/Input/Input.cpp.o.d"
   "colonist"
   "colonist.pdb"
 )

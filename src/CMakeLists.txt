@@ -20,5 +20,6 @@ include_directories(
 file(GLOB_RECURSE SOURCES source/*.cpp)
 add_executable(colonist Game/Main.cpp
                         Core/Application.cpp
-                        Graphics/Window.cpp)
+                        Graphics/Window.cpp
+                        Input/Input.cpp)
 target_link_libraries(colonist PRIVATE OpenGL::GL GLEW::GLEW glfw glm::glm)

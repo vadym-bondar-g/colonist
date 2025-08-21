@@ -2,7 +2,7 @@
 
 
 int main(){
-    Application app;
+    Application app(1280, 720, "The Colonist");
     app.run();
 
     return 0;

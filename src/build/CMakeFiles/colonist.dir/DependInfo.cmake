@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/user/colonist/src/Core/Application.cpp" "CMakeFiles/colonist.dir/Core/Application.cpp.o" "gcc" "CMakeFiles/colonist.dir/Core/Application.cpp.o.d"
   "/home/user/colonist/src/Game/Main.cpp" "CMakeFiles/colonist.dir/Game/Main.cpp.o" "gcc" "CMakeFiles/colonist.dir/Game/Main.cpp.o.d"
   "/home/user/colonist/src/Graphics/Window.cpp" "CMakeFiles/colonist.dir/Graphics/Window.cpp.o" "gcc" "CMakeFiles/colonist.dir/Graphics/Window.cpp.o.d"
+  "/home/user/colonist/src/Input/Input.cpp" "CMakeFiles/colonist.dir/Input/Input.cpp.o" "gcc" "CMakeFiles/colonist.dir/Input/Input.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

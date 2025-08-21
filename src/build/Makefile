@@ -201,6 +201,30 @@ Graphics/Window.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/Graphics/Window.cpp.s
 .PHONY : Graphics/Window.cpp.s
 
+Input/Input.o: Input/Input.cpp.o
+.PHONY : Input/Input.o
+
+# target to build an object file
+Input/Input.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/Input/Input.cpp.o
+.PHONY : Input/Input.cpp.o
+
+Input/Input.i: Input/Input.cpp.i
+.PHONY : Input/Input.i
+
+# target to preprocess a source file
+Input/Input.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/Input/Input.cpp.i
+.PHONY : Input/Input.cpp.i
+
+Input/Input.s: Input/Input.cpp.s
+.PHONY : Input/Input.s
+
+# target to generate assembly for a file
+Input/Input.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/colonist.dir/build.make CMakeFiles/colonist.dir/Input/Input.cpp.s
+.PHONY : Input/Input.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -219,6 +243,9 @@ help:
 	@echo "... Graphics/Window.o"
 	@echo "... Graphics/Window.i"
 	@echo "... Graphics/Window.s"
+	@echo "... Input/Input.o"
+	@echo "... Input/Input.i"
+	@echo "... Input/Input.s"
 .PHONY : help
 
 

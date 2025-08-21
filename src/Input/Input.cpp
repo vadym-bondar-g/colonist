@@ -1,6 +1,6 @@
 #include "Input.h"
 
-GLFWwindow* Input::s_Window = nullptrl;
+GLFWwindow* Input::s_Window = nullptr;
 
 void Input::Init(GLFWwindow* window){
     s_Window = window;
@@ -11,9 +11,9 @@ int state = glfwGetKey(s_Window,key);
 return state == GLFW_PRESS || state == GLFW_REPEAT;
 }// Проверка нажатой клавиши
 
-bool Iput::IsMouseButtonPressed(int button){
+bool Input::IsMouseButtonPressed(int button){
 if(!s_Window) return false;
-    int state == glfwGetMouseButton(s_Window, button);
+    int state = glfwGetMouseButton(s_Window, button);
  
    return state == GLFW_PRESS;
 }// Нажата ли клавиша мыши и какая 
