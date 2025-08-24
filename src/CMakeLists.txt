@@ -17,9 +17,11 @@ include_directories(
     ${GLEW_INCLIDE_DIR}
     ${GLM_INCLUDE_DIR}
 )
+
 file(GLOB_RECURSE SOURCES source/*.cpp)
 add_executable(colonist Game/Main.cpp
                         Core/Application.cpp
                         Graphics/Window.cpp
                         Input/Input.cpp)
-target_link_libraries(colonist PRIVATE OpenGL::GL GLEW::GLEW glfw glm::glm)
+target_link_libraries(colonist PRIVATE OpenGL::GL GLEW::GLEW glfw glm::glm tinyobjloader)
+target_include_directories(colonist PRIVATE vendor/tinyobjloader)
