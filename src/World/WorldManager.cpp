@@ -73,8 +73,18 @@ bool WorldManager::loadOBJ(const std::string& path, std::vector<float>& intervea
 	struct Key
 	{	int v, vt, vn; bool operator==(const Key& o) const{ return v== o.v,}
 		
-	// here im stopped
+	// here im stopped	
 	}
+	struct H { size_t operator() (const Key& k)const{return((k.v*73856093) ^ (k.vt*19349663) ^ (k.vn*83492791));}}
+
+	std::unordered_map<Key, uint32_t, H> map;
+	intervealed.clear(); indices.clear();
+	auto pushVertex = [&](const Key& k)->uint32_t{
+		auto it = map.find(k);
+		if(it!=map.end()) return it->second;
+	 }
+
+
 }
 
 
