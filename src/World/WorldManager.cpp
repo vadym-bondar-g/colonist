@@ -82,9 +82,51 @@ bool WorldManager::loadOBJ(const std::string& path, std::vector<float>& intervea
 	auto pushVertex = [&](const Key& k)->uint32_t{
 		auto it = map.find(k);
 		if(it!=map.end()) return it->second;
+	 
+	 int vi = k.v*3;
+	 float px = attrib.vertices[vi+0];
+	 float py = attrib.vertices[vi+1];
+	 float pz = attrib.vertices[vi+2];
+
+	 float nx = 0, ny =0 ,nz =0;
+	 if(k.vn >=0){
+	 	int ni = k.vn*3;
+	 	nx = attrib.normals[ni+0];
+	 	nx = attrib.normals[ni+1];
+	 	nx = attrib.normals[ni+2];
+
 	 }
+	 float u=0,v= 0;
+	 if(k.vt >=0){
+	 	int ti = k.vt*2;
+	 	u = attrib.texcoords[ti+0];
+	 	v = attrib.texcoords[ti+1];
+
+	 } 
+
+	 uint32_t idx = (uint32_t)(intervealed.size()/8);
+	 intervealed.insert(intervealed.end(),{px,py,pz, nx,ny,nz, u,v});
+	 map.emplace(k, idx);
+	 return idx;}
 
 
+	 for( const auto& sh : shapes){
+	 	size_t off = 0;
+	 	for(size_t f=0 ; f<sh.mesh.num_face_vertices.size(); ++f){
+	 		int fv = sh.mesh.num_face_vertices[f];
+	 		for (int i=0; i<fv;i++){
+	 			const auto& idx = sh.mesh.indices[off + i];
+
+	 			Key k{idx.vertex_index, idx.texcoords_index, idx.normal_index };
+	 			indices.push_back(pushVertex(k));
+
+	 		}
+	 		off +=fv;
+
+
+	 	}
+	 }
+	 return true;
 }
 
 

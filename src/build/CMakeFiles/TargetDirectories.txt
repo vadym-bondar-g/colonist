@@ -1,3 +1,0 @@
-/home/user/colonist/src/build/CMakeFiles/colonist.dir
-/home/user/colonist/src/build/CMakeFiles/edit_cache.dir
-/home/user/colonist/src/build/CMakeFiles/rebuild_cache.dir
