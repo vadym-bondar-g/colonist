@@ -1,5 +1,5 @@
 #include "WorldManager.h"
-#include <glm/gtc/type_ptr.h>
+#include <glm/gtc/type_ptr.hpp>
 #define TINYLOADEROBJECT_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 #include <iostream>
@@ -35,7 +35,7 @@ FragColor = vec4(base *(0.2 + 0.8*ndl), 1.0);
 static GLuint compile(GLenum type, const char* src){
 	GLuint s = glCreateShader(type);
 	glShaderSource(s, 1, &src, nullptr);
-	glShaderCompile(s);
+	glCompileShader(s);
 	GLint ok =0; glGetShaderiv(s, GL_COMPILE_STATUS, &ok);
 	if (!ok){char log[2048]; glGetShaderInfoLog(s,2048,nullptr,log); std::cerr <<log<< "\n";}
 	return s;
@@ -74,7 +74,7 @@ bool WorldManager::loadOBJ(const std::string& path, std::vector<float>& intervea
 	{	int v, vt, vn; bool operator==(const Key& o) const{ return v== o.v,}
 		
 	// here im stopped	
-	}
+	};
 	struct H { size_t operator() (const Key& k)const{return((k.v*73856093) ^ (k.vt*19349663) ^ (k.vn*83492791));}}
 
 	std::unordered_map<Key, uint32_t, H> map;
@@ -107,9 +107,7 @@ bool WorldManager::loadOBJ(const std::string& path, std::vector<float>& intervea
 	 uint32_t idx = (uint32_t)(intervealed.size()/8);
 	 intervealed.insert(intervealed.end(),{px,py,pz, nx,ny,nz, u,v});
 	 map.emplace(k, idx);
-	 return idx;}
-
-
+	 return idx;
 	 for( const auto& sh : shapes){
 	 	size_t off = 0;
 	 	for(size_t f=0 ; f<sh.mesh.num_face_vertices.size(); ++f){
@@ -117,7 +115,7 @@ bool WorldManager::loadOBJ(const std::string& path, std::vector<float>& intervea
 	 		for (int i=0; i<fv;i++){
 	 			const auto& idx = sh.mesh.indices[off + i];
 
-	 			Key k{idx.vertex_index, idx.texcoords_index, idx.normal_index };
+	 			Key k{idx.vertex_index, idx.texcoord_index, idx.normal_index };
 	 			indices.push_back(pushVertex(k));
 
 	 		}
@@ -128,7 +126,41 @@ bool WorldManager::loadOBJ(const std::string& path, std::vector<float>& intervea
 	 }
 	 return true;
 }
+bool WorldManager::Init(const std::string& path){
+	std::vector<float> inter; std::vector<uint32_t> idx;
+	if (!loadOBJ(path, inter, idx))
+	{
+		return false;//
+	}
+	glGenVertexArrays(1, &m_VAO);
+	glGenBuffers(1, &m_VBO);
+	glGenBuffers(1, &m_EBO);
+	glBindVertexArrays(m_VAO);
 
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+	glBufferData(GL_ARRAY_BUFFER, inter.size()*sizeof(float), inter.data(), GL_STATIC_DRAW );
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, idx.size()*sizeof(uint32_t),idx.data(), GL_STATIC_DRAW);
+
+
+	GLsizei stride = 8 * sizeof(float);
+	glEnableVertexAttribArray(0);
+
+	m_IndexCount = (GLsizei)idx.size();
+	m_Program = makeProgram(kVS,kFS);
+	m_Model = glm::mat4(1.0f);
+
+
+return true;}
+void WorldManager::Render(const glm::mat4& view, const glm::mat4& proj){
+ if(!m_Program 
+|| !m_VAO ||m_IndexCount==0)return;
+ 	glUseProgram(m_Program);
+ GLint uM = glGetUniformLocation(m_Program, "uModel");
+
+
+}
 
 
 
