@@ -158,10 +158,25 @@ void WorldManager::Render(const glm::mat4& view, const glm::mat4& proj){
 || !m_VAO ||m_IndexCount==0)return;
  	glUseProgram(m_Program);
  GLint uM = glGetUniformLocation(m_Program, "uModel");
+ GLint uV = glGetUniformLocation(m_Program, "uView");
+ GLint uP = glGetUniformLocation(m_Program, "uProj");
+ glUniformMatrix4fv(uM, 1, GL_FALSE, glm::value_ptr(m_Model));
+ glUniformMatrix4fv(uV, 1, GL_FALSE, glm::value_ptr(view));
+ glUniformMatrix4fv(uP, 1, GL_FALSE, glm::value_ptr(proj));
+
+ glBindVertexArray(m_VAO);
+ glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_INT, 0);
+ glBindVertexArray(0);
 
 
 }
+void WorldManager::Shutdown(){
+if(m_EBO){glDeleteBuffers(1, &m_EBO); m_EBO = 0;}
+if(m_VBO){glDeleteBuffers(1, &m_VBO); m_VBO =0;}
+if(m_VAO){glDeleteVertexArrays(1, &m_VAO); m_VAO= 0;}
+if(m_Program){glDeleteProgram(m_Program); m_Program=0;}
 
+}
 
 
 
