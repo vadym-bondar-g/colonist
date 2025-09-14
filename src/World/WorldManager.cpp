@@ -1,7 +1,9 @@
 #include "WorldManager.h"
 #include <glm/gtc/type_ptr.hpp>
 #define TINYLOADEROBJECT_IMPLEMENTATION
+#include <complex>
 #include <tiny_obj_loader.h>
+#include <unordered_map>
 #include <iostream>
 
 
@@ -71,112 +73,124 @@ bool WorldManager::loadOBJ(const std::string& path, std::vector<float>& intervea
 	const auto& shapes = reader.GetShapes();
 
 	struct Key
-	{	int v, vt, vn; bool operator==(const Key& o) const{ return v== o.v,}
+	{	int v, vt, vn; bool operator==(const Key& o) const{ return v== o.v;}
 		
 	// here im stopped	
 	};
-	struct H { size_t operator() (const Key& k)const{return((k.v*73856093) ^ (k.vt*19349663) ^ (k.vn*83492791));}}
+	struct H { size_t operator() (const Key& k)const{return((k.v*73856093) ^ (k.vt*19349663) ^ (k.vn*83492791));}};
 
 	std::unordered_map<Key, uint32_t, H> map;
 	intervealed.clear(); indices.clear();
-	auto pushVertex = [&](const Key& k)->uint32_t{
+	auto pushVertex = [&](const Key& k)->uint32_t {
 		auto it = map.find(k);
 		if(it!=map.end()) return it->second;
 	 
-	 int vi = k.v*3;
-	 float px = attrib.vertices[vi+0];
-	 float py = attrib.vertices[vi+1];
-	 float pz = attrib.vertices[vi+2];
+		int vi = k.v*3;
+		float px = attrib.vertices[vi+0];
+		float py = attrib.vertices[vi+1];
+		float pz = attrib.vertices[vi+2];
 
-	 float nx = 0, ny =0 ,nz =0;
-	 if(k.vn >=0){
-	 	int ni = k.vn*3;
-	 	nx = attrib.normals[ni+0];
-	 	nx = attrib.normals[ni+1];
-	 	nx = attrib.normals[ni+2];
+		float nx = 0, ny =0 ,nz =0;
+		if(k.vn >=0){
+			int ni = k.vn*3;
+			nx = attrib.normals[ni+0];
+			nx = attrib.normals[ni+1];
+			nx = attrib.normals[ni+2];
 
-	 }
-	 float u=0,v= 0;
-	 if(k.vt >=0){
-	 	int ti = k.vt*2;
-	 	u = attrib.texcoords[ti+0];
-	 	v = attrib.texcoords[ti+1];
+		}
+		float u=0,v= 0;
+		if(k.vt >=0){
+			int ti = k.vt*2;
+			u = attrib.texcoords[ti+0];
+			v = attrib.texcoords[ti+1];
 
-	 } 
+		}
 
-	 uint32_t idx = (uint32_t)(intervealed.size()/8);
-	 intervealed.insert(intervealed.end(),{px,py,pz, nx,ny,nz, u,v});
-	 map.emplace(k, idx);
-	 return idx;
-	 for( const auto& sh : shapes){
-	 	size_t off = 0;
-	 	for(size_t f=0 ; f<sh.mesh.num_face_vertices.size(); ++f){
-	 		int fv = sh.mesh.num_face_vertices[f];
-	 		for (int i=0; i<fv;i++){
-	 			const auto& idx = sh.mesh.indices[off + i];
+		uint32_t idx = (uint32_t)(intervealed.size()/8);
+		intervealed.insert(intervealed.end(),{px,py,pz, nx,ny,nz, u,v});
+		map.emplace(k, idx);
+		return idx;
+		for( const auto& sh : shapes){
+			size_t off = 0;
+			for(size_t f=0 ; f<sh.mesh.num_face_vertices.size(); ++f){
+				int fv = sh.mesh.num_face_vertices[f];
+				for (int i=0; i<fv;i++){
+					const auto& idx = sh.mesh.indices[off + i];
 
-	 			Key k{idx.vertex_index, idx.texcoord_index, idx.normal_index };
-	 			indices.push_back(pushVertex(k));
+					Key k{idx.vertex_index, idx.texcoord_index, idx.normal_index };
+					indices.push_back(pushVertex(k));
 
-	 		}
-	 		off +=fv;
-
-
-	 	}
-	 }
-	 return true;
-}
-bool WorldManager::Init(const std::string& path){
-	std::vector<float> inter; std::vector<uint32_t> idx;
-	if (!loadOBJ(path, inter, idx))
-	{
-		return false;//
-	}
-	glGenVertexArrays(1, &m_VAO);
-	glGenBuffers(1, &m_VBO);
-	glGenBuffers(1, &m_EBO);
-	glBindVertexArrays(m_VAO);
-
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-	glBufferData(GL_ARRAY_BUFFER, inter.size()*sizeof(float), inter.data(), GL_STATIC_DRAW );
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, idx.size()*sizeof(uint32_t),idx.data(), GL_STATIC_DRAW);
+				}
+				off +=fv;
 
 
-	GLsizei stride = 8 * sizeof(float);
-	glEnableVertexAttribArray(0);
+			}
+		}
+		return true;
 
-	m_IndexCount = (GLsizei)idx.size();
-	m_Program = makeProgram(kVS,kFS);
-	m_Model = glm::mat4(1.0f);
+		bool WorldManager::Init(const std::string& path);{
+			std::vector<float> inter; std::vector<uint32_t> idx;
+			if (!loadOBJ(path, inter, idx))
+			{
+				return false;//
+			}
+			glGenVertexArrays(1, &m_VAO);
+			glGenBuffers(1, &m_VBO);
+			glGenBuffers(1, &m_EBO);
+			glBindVertexArray(m_VAO);
 
+			glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+			glBufferData(GL_ARRAY_BUFFER, inter.size()*sizeof(float), inter.data(), GL_STATIC_DRAW );
 
-return true;}
-void WorldManager::Render(const glm::mat4& view, const glm::mat4& proj){
- if(!m_Program 
-|| !m_VAO ||m_IndexCount==0)return;
- 	glUseProgram(m_Program);
- GLint uM = glGetUniformLocation(m_Program, "uModel");
- GLint uV = glGetUniformLocation(m_Program, "uView");
- GLint uP = glGetUniformLocation(m_Program, "uProj");
- glUniformMatrix4fv(uM, 1, GL_FALSE, glm::value_ptr(m_Model));
- glUniformMatrix4fv(uV, 1, GL_FALSE, glm::value_ptr(view));
- glUniformMatrix4fv(uP, 1, GL_FALSE, glm::value_ptr(proj));
-
- glBindVertexArray(m_VAO);
- glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_INT, 0);
- glBindVertexArray(0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, idx.size()*sizeof(uint32_t),idx.data(), GL_STATIC_DRAW);
 
 
-}
-void WorldManager::Shutdown(){
-if(m_EBO){glDeleteBuffers(1, &m_EBO); m_EBO = 0;}
-if(m_VBO){glDeleteBuffers(1, &m_VBO); m_VBO =0;}
-if(m_VAO){glDeleteVertexArrays(1, &m_VAO); m_VAO= 0;}
-if(m_Program){glDeleteProgram(m_Program); m_Program=0;}
+			GLsizei stride = 8 * sizeof(float);
+			glEnableVertexAttribArray(0);
 
-}
+			m_IndexCount = (GLsizei)idx.size();
+			m_Program = makeProgram(kVS,kFS);
+			m_Model = glm::mat4(1.0f);
+
+
+			return true;}
+		void WorldManager::Render(const glm::mat4& view, const glm::mat4& proj);{
+			if(!m_Program
+		   || !m_VAO ||m_IndexCount==0) return 0;
+			glUseProgram(m_Program);
+			GLint uM = glGetUniformLocation(m_Program, "uModel");
+			GLint uV = glGetUniformLocation(m_Program, "uView");
+			GLint uP = glGetUniformLocation(m_Program, "uProj");
+			glUniformMatrix4fv(uM, 1, GL_FALSE, glm::value_ptr(m_Model));
+			glUniformMatrix4fv(uV, 1, GL_FALSE, glm::value_ptr(view));
+			glUniformMatrix4fv(uP, 1, GL_FALSE, glm::value_ptr(std::proj));
+
+			glBindVertexArray(m_VAO);
+			glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_INT, 0);
+			glBindVertexArray(0);
+
+
+		}
+		void WorldManager::Shutdown() {
+			if (m_EBO) {
+				glDeleteBuffers(1, &m_EBO);
+				m_EBO = 0;
+			}
+			if (m_VBO) {
+				glDeleteBuffers(1, &m_VBO);
+				m_VBO = 0;
+			}
+			if (m_VAO) {
+				glDeleteVertexArrays(1, &m_VAO);
+				m_VAO = 0;
+			}
+			if (m_Program) {
+				glDeleteProgram(m_Program);
+				m_Program = 0;
+			}
+		}
+
 
 
 

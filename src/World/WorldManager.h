@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
 #include <string>
+#include <unordered_map>
 #include <memory>
 #include <vector>
 
@@ -26,7 +27,7 @@ private:
 
 
 	// GL resources
-	GLuint m_Vao = 0 , m_VBO = 0 , m_EBO = 0;
+	GLuint m_VAO = 0 , m_VBO = 0 , m_EBO = 0;
 	GLuint m_Program = 0;
 	GLsizei m_IndexCount = 0;
 	glm::mat4 m_Model{1.0f};
